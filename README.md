@@ -28,11 +28,6 @@ Athlentiq is an android application developed with Kotlin that leverages the cap
 - [Contributors](#contributors)
 
 
-## Overview
-
-Developed as part of our third-year course at Metropolia University of Applied Sciences, RepDetect is a collaborative effort by a team of four students. Our primary objective was to create an innovative fitness application adhering to specific guidelines and meeting the course requirements.
-
-
 ## Features
 
 - **Pose Detection AI Model:** Accurate detection of user poses to evaluate exercise form.
