@@ -184,15 +184,6 @@ The detected landmark data plays a crucial role in training machine learning mod
 <img width="174" height="340" alt="logoScreen" src="https://user-images.githubusercontent.com/59287175/286032211-89e92e59-5d96-4967-89d5-b03b53a8fa25.png"><img width="175" height="340" alt="homeScreen" src="https://user-images.githubusercontent.com/59287175/286029496-897ce822-1f2a-4b01-9302-2443068c0275.png"><img width="174" height="340" alt="externalCameraScreen" src="https://user-images.githubusercontent.com/59287175/286030588-476642c7-daf2-4062-8a1f-1a1e19512fc3.png"><img width="174" height="340" alt="gif" src="https://user-images.githubusercontent.com/59287175/286030249-3af2ffb4-c296-4fd5-ac01-9089b6d169df.png"><img width="174" alt="workoutScreen" src="https://user-images.githubusercontent.com/59287175/286029854-d3e3d56a-f175-4e3f-a4d0-c634b13b9ed3.png"><img width="174" height="340" alt="yoga" src="https://github.com/SurajKRB/RepDetect/assets/59287175/6e606153-8580-4786-b4c0-092131fb0374.png"><img width="174" height="340" alt="resultScreen" src="https://user-images.githubusercontent.com/59287175/286032381-72c84806-ff22-4773-8d9f-536fd8c14a85.png"><img width="174" height="340" alt="exerciseListScreen" src="https://user-images.githubusercontent.com/59287175/286031666-817c7362-b81c-4c77-afd5-f65571cc90ed.png"><img width="174" height="340" alt="planListScreen" src="https://user-images.githubusercontent.com/59287175/286030947-b0bf9440-f373-45c9-9c1a-ed1c63519d28.png">
 <img width="174" height="340" alt="profileScreen" src="https://user-images.githubusercontent.com/59287175/286029060-dcb8ce47-2dd4-4bb1-b46b-e9fd51e50501.png">
 
-## Demo Video
-
-<h3 align="center">Click to watch</h3>
-
-<p align="center">
-  <a href="https://youtu.be/hVLQ0l04cgM">
-    <img src="https://img.youtube.com/vi/hVLQ0l04cgM/0.jpg" alt="Watch the video">
-  </a>
-</p>
 
 
 ## Libraries
