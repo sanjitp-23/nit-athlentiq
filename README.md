@@ -1,16 +1,14 @@
 <a name="readme-top"></a>
-<h1 align="center">RepDetect</h1> 
+<h1 align="center">Athlentiq</h1> 
 
-<h3 align="center">Make counting of exercise easier with RepDetect.</h3>
+<h3 align="center">Where Talent Meets Opportunity</h3>
 
-<p align="center">
-  <img width="200" height="160" src="https://users.metropolia.fi/~shilpasy/repdetectLogo.png" alt="App Logo">
-</p>
+![WhatsApp Image 2026-02-17 at 10 33 04 PM](https://github.com/user-attachments/assets/1c6a39df-d559-4e59-aacb-05959d7990fd)
+
 
 ## Mobile project with AI
 
-Welcome to RepDetect, an innovative Android application developed with Kotlin that leverages the capabilities of MediaPipe Pose Landmark Detection. RepDetect accurately counts repetitions, enhancing your workout experience.
-
+Athlentiq is an android application developed with Kotlin that leverages the capabilities of MediaPipe Pose Landmark Detection. It accurately counts repetitions, enhancing your workout experience and also its an all-in-one AI fitness companion that turns your cam into a personal trainer: it watches you work out, counts your reps in real time using pose estimation, and tracks your progress over time — no wearables, no manual logging, just you and your browser.
 
 ## Table of Contents
 
