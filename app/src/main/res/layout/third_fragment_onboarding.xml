@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".onboarding.FirstOnboardingFragment">
+
+    <!-- FrameLayout to contain background image and overlay -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Background image -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/equipment_description"
+            android:scaleType="fitXY"
+            android:src="@drawable/equipment3" />
+
+        <!-- ImageView for the overlay -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="350dp"
+            android:alpha="0.4"
+            android:contentDescription="@string/overlay"
+            android:scaleType="fitXY"
+            android:src="@drawable/overlay" />
+
+    </FrameLayout>
+
+    <!-- Main title -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="@string/hassle_free_repetition_tracking"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <!-- Sub title -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="0dp"
+        android:gravity="center"
+        android:text="@string/counting_made_easier"
+        android:textSize="22sp" />
+
+</LinearLayout>

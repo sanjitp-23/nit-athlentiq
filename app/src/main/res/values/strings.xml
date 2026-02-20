@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Strings for splashscreen and onboarding -->
+    <string name="next_button_text">Next</string>
+    <string name="elevate_your_workout_experience">Elevate Your Workout Experience</string>
+    <string name="empower_your_fitness_journey">Empower Your Fitness Journey</string>
+    <string name="counting_made_easier">Counting made easier</string>
+    <string name="hassle_free_repetition_tracking">Hassle-Free Repetition Tracking</string>
+    <string name="kick_start">Kick start your journey by crafting a tailored workout plan that suits your needs and goals</string>
+    <string name="create_a_workout">Create a workout plan to stay fit</string>
+    <string name="next_onboarding">Next</string>
+    <string name="get_started">Get Started</string>
+
+    <!-- Strings for home-screen -->
+    <string name="mixed_text">20 <font fgcolor="#A9A9A9">x 3</font></string>
+    <string name="there_is_no_plan_set_at_the_moment">There is no plan set at the moment</string>
+    <string name="exercise_left">%d exercise left</string>
+
+    <string name="app_name" translatable="false">Athlentiq</string>
+
+    <string name="java_entry_title" translatable="false">Run the ML Kit quickstart written in Java</string>
+    <string name="kotlin_entry_title" translatable="false">Run the ML Kit quickstart written in Kotlin</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="permission_camera_rationale" translatable="false">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission" translatable="false">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error" translatable="false">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="toggle_turn_on" translatable="false">Front</string>
+    <string name="toggle_turn_off" translatable="false">Back</string>
+    <string name="desc_camera_source_activity" translatable="false">Vision detectors demo with live camera preview</string>
+    <string name="desc_still_image_activity" translatable="false">Vision detectors demo with a still image</string>
+    <string name="desc_camerax_live_preview_activity" translatable="false">Vision detectors demo with live preview using CameraX. Note that CameraX is only supported on API 21+</string>
+    <string name="desc_cameraxsource_demo_activity" translatable="false">Object detection with custom classifier using ML Kit CameraXSource API. Note that CameraX is only supported on API 21+</string>
+    <string name="download_error" translatable="false">Download error</string>
+    <string name="start_over" translatable="false">Start over</string>
+    <string name="menu_item_settings" translatable="false">Settings</string>
+    <string name="select_image" translatable="false">Select image</string>
+    <string name="custom_object_detection" translatable="false">Custom Object Detector</string>
+
+    <!-- Settings related strings. -->
+    <string name="pref_screen" translatable="false">ps</string>
+    <string name="pref_screen_title_live_preview" translatable="false">Live preview settings</string>
+    <string name="pref_screen_title_still_image" translatable="false">Still image settings</string>
+    <string name="pref_screen_title_camerax_live_preview" translatable="false">CameraX live preview settings</string>
+    <string name="pref_screen_title_cameraxsource_demo" translatable="false">CameraXSource live preview settings</string>
+    <string name="pref_category_info" translatable="false">Detection Info</string>
+    <string name="pref_category_face_detection" translatable="false">Face Detection</string>
+    <string name="pref_category_object_detection" translatable="false">Object Detection / Custom Object Detection</string>
+    <string name="pref_category_automl" translatable="false">AutoML Image Labeling</string>
+    <string name="pref_category_pose_detection" translatable="false">Pose Detection</string>
+    <string name="pref_category_segmentation" translatable="false">Selfie Segmentation</string>
+    <string name="pref_category_text_recognition" translatable="false">Text Recognition</string>
+    <string name="pref_category_barcode_scanning" translatable="false">Barcode Scanning</string>
+
+    <!-- Strings for camera settings. -->
+    <string name="pref_category_key_camera" translatable="false">pckc</string>
+    <string name="pref_category_title_camera" translatable="false">Camera</string>
+    <string name="pref_key_rear_camera_preview_size" translatable="false">rcpvs</string>
+    <string name="pref_key_rear_camera_picture_size" translatable="false">rcpts</string>
+    <string name="pref_key_front_camera_preview_size" translatable="false">fcpvs</string>
+    <string name="pref_key_front_camera_picture_size" translatable="false">fcpts</string>
+    <string name="pref_key_camerax_rear_camera_target_resolution" translatable="false">crctas</string>
+    <string name="pref_key_camerax_front_camera_target_resolution" translatable="false">cfctas</string>
+    <string name="pref_key_camera_live_viewport" translatable="false">clv</string>
+    <string name="pref_title_rear_camera_preview_size" translatable="false">Rear camera preview size</string>
+    <string name="pref_title_front_camera_preview_size" translatable="false">Front camera preview size</string>
+    <string name="pref_title_camerax_rear_camera_target_resolution" translatable="false">CameraX rear camera target resolution</string>
+    <string name="pref_title_camerax_front_camera_target_resolution" translatable="false">CameraX front camera target resolution</string>
+    <string name="pref_title_camera_live_viewport" translatable="false">Enable live viewport</string>
+    <string name="pref_summary_camera_live_viewport" translatable="false">Do not block camera preview drawing on detection</string>
+
+    <!-- Strings for info preference. -->
+    <string name="pref_title_info_hide" translatable="false">Hide detection info</string>
+    <string name="pref_key_info_hide" translatable="false">ih</string>
+
+
+    <!-- Strings for pose detector performance mode preference. -->
+    <string name="pref_title_pose_detector_performance_mode" translatable="false">Performance mode</string>
+    <string name="pref_key_live_preview_pose_detection_performance_mode" translatable="false">lppdpm</string>
+    <string name="pref_key_still_image_pose_detection_performance_mode" translatable="false">sipdpm</string>
+    <string name="pref_entries_pose_detector_performance_mode_fast" translatable="false">Fast</string>
+    <string name="pref_entries_pose_detector_performance_mode_accurate" translatable="false">Accurate</string>
+    <string name="pref_entry_values_pose_detector_performance_mode_fast" translatable="false">1</string>
+    <string name="pref_entry_values_pose_detector_performance_mode_accurate" translatable="false">2</string>
+
+    <!-- Strings for pose detector prefer gpu preference. -->
+    <string name="pref_title_pose_detector_prefer_gpu" translatable="false">Prefer using GPU</string>
+    <string name="pref_key_pose_detector_prefer_gpu" translatable="false">pdpg</string>
+    <string name="pref_summary_pose_detector_prefer_gpu" translatable="false">If enabled, GPU will be used as long as it is available, stable and returns correct results. In this case, the detector will not check if GPU is really faster than CPU.</string>
+
+    <!-- Strings for pose detector showInFrameLikelihood preference. -->
+    <string name="pref_title_pose_detector_show_in_frame_likelihood" translatable="false">Show in-frame likelihood</string>
+    <string name="pref_key_live_preview_pose_detector_show_in_frame_likelihood" translatable="false">lppdsifl</string>
+    <string name="pref_key_still_image_pose_detector_show_in_frame_likelihood" translatable="false">sipdsifl</string>
+
+    <!-- Strings for pose detector z value visualization preference. -->
+    <string name="pref_title_pose_detector_visualize_z" translatable="false">Visualize z value</string>
+    <string name="pref_key_pose_detector_visualize_z" translatable="false">pdvz</string>
+    <string name="pref_title_pose_detector_rescale_z" translatable="false">Rescale z value for visualization</string>
+    <string name="pref_key_pose_detector_rescale_z" translatable="false">pdrz</string>
+
+    <!-- Strings for pose classification preference. -->
+    <string name="pref_title_pose_detector_run_classification" translatable="false">Run Classification</string>
+    <string name="pref_key_pose_detector_run_classification" translatable="false">pdrc</string>
+    <string name="pref_summary_pose_detector_run_classification" translatable="false">Classify squat and pushup poses. Count reps in streaming mode. To get the best classification results based on the current sample data, face the camera side way and make sure your full body is in the frame.</string>
+
+    <!-- Strings for segmentation preference. -->
+    <string name="pref_title_segmentation_raw_size_mask" translatable="false">Enable raw size mask</string>
+    <string name="pref_key_segmentation_raw_size_mask" translatable="false">srsm</string>
+    <string name="pref_group_title_face_mesh" translatable="false">Face Mesh Detection</string>
+    <string name="pref_title_face_mesh_use_case" translatable="false">Use Case</string>
+    <string name="pref_key_face_mesh_use_case" translatable="false">face_mesh_use_case</string>
+
+    <!-- Strings for Completed & Cancel fragment -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="completed_min">%1$d mins</string>
+    <string name="completed_icon_content_description">Completed Icon</string>
+    <string name="completed_title">Completed</string>
+    <string name="good_job_body">Good Job</string>
+    <string name="completed_announcement">Your activity is over, keep improving your training skills!</string>
+    <string name="home_button">Home</string>
+    <string name="canceled_workout_title">Canceled Workout</string>
+    <string name="no_worries_body">No Worries</string>
+    <string name="canceled_announcement">Keep the motivation alive, and let\'s get back to it when you feel inspired!</string>
+    <string name="workoutResultDisplay">%s</string>
+    <string name="noWorkoutResultDisplay">No Exercise Performed</string>
+    <string name="workoutTimer">%s</string>
+    <string name="current_exercise_format">Exercise: %s</string>
+    <string name="current_repetition_format">Count: %d</string>
+    <string name="gif_image_view">gif image view</string>
+
+    <!-- Strings for Start&InProcess fragment -->
+    <string name="cancel_button">Cancel</string>
+    <string name="start_button">Start</string>
+    <string name="complete_button">Complete</string>
+    <string name="timer">%s</string>
+    <string name="exercise_count">%1$s: %2$d</string>
+    <string name="hello">Hello! 🔥</string>
+    <string name="name">Athlentiq User</string>
+    <string name="workout_progress">Workout Progress</string>
+    <string name="exercises_left">12 exercises left</string>
+    <string name="progress_image">Progress Image</string>
+    <string name="recent_activity">Recent Activity</string>
+    <string name="colorful_rectangle">Progress Image</string>
+    <string name="push_ups">Push-Ups</string>
+    <string name="green_rectangle">Progress Image</string>
+    <string name="orange_rectangle">Progress Image</string>
+    <string name="squats">Squats</string>
+    <string name="lunges">Lunges</string>
+    <string name="plan_today">Today\'s Plan</string>
+    <string name="push_up">Push Up</string>
+    <string name="sub_header">100 Push up a day</string>
+    <string name="sit_up">Sit Up</string>
+    <string name="sit_up_a_day">20 Sit up a day</string>
+    <string name="skip">Skip all</string>
+    <string name="_00_00">00:00</string>
+    <string name="confidence_indicator">Confidence Indicator</string>
+    <string name="record_icon">record icon</string>
+    <string name="confidence_percentage">%d %%</string>
+
+    <!-- Strings for PlanStepOne & PlanStepTwo fragment -->
+    <string name="choose_exercise">Choose Exercises</string>
+    <string name="level_easy">Beginner</string>
+    <string name="level_intermediate">Intermediate</string>
+    <string name="level_advance">Advance</string>
+    <string name="content_description_media">Image of exercise type</string>
+    <string name="title_example">Push up</string>
+    <string name="text_example">450 kCal</string>
+    <string name="supporting_text">Advance</string>
+    <string name="action">Choose</string>
+
+    <string name="new_plan">New Fitness Plan</string>
+    <string name="label_exercise_name">Exercise</string>
+    <string name="label_time">Time</string>
+    <string name="label_rep">Repeat Number (1 - 100)</string>
+    <string name="label_days">Select days</string>
+    <string name="create_button">Create plan</string>
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <!-- Strings for Profile fragment -->
+    <string name="content_description">User avatar</string>
+    <string name="default_user">Athlentiq User</string>
+    <string name="result">Weekly result</string>
+    <string name="summary">Weekly summary</string>
+    <string name="total_time">%d minutes</string>
+    <string name="total_exercise">%d exercises</string>
+    <string name="example_percentage">110 %</string>
+    <string name="exercise_type">Exercise Type</string>
+    <string name="no_activities_yet">No activities yet</string>
+    <string name="total_calories"> %s Kcal this week</string>
+    <string name="loading">Loading Pose AI model in camera preview..</string>
+    <string name="overlay">Semi-transparent overlay for visual effect</string>
+    <string name="equipment_description">Image of workout equipment</string>
+    <string name="logo">logo for the app</string>
+    <string name="counting_reps_made_simple">Counting Reps Made Simple</string>
+    <string name="reps">Reps</string>
+    <string name="completedAll">Congratulation!\nYou have completed all the planned exercise for today.</string>
+    <string name="tap_to_select">Tap a person to track</string>
+    <string name="selected_person_format">Tracking: %s</string>
+
+</resources>
+

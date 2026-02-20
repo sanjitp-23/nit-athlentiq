@@ -1,0 +1,73 @@
+﻿> Task :app:clean
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:generateDebugResValues
+> Task :app:generateDebugResources
+> Task :app:dataBindingMergeDependencyArtifactsDebug
+> Task :app:packageDebugResources
+> Task :app:dataBindingTriggerDebug
+> Task :app:parseDebugLocalResources
+> Task :app:mergeDebugResources
+> Task :app:generateSafeArgsDebug
+> Task :app:dataBindingGenBaseClassesDebug
+> Task :app:mapDebugSourceSetPaths
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:checkDebugAarMetadata
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:javaPreCompileDebug
+> Task :app:mergeDebugAssets
+> Task :app:desugarDebugFileDependencies
+> Task :app:mergeDebugJniLibFolders
+> Task :app:compressDebugAssets
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:processDebugManifestForPackage
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeLibDexDebug
+> Task :app:mergeDebugNativeLibs
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libimage_processing_util_jni.so, libpl_droidsonroids_gif.so, libxeno_native.so.
+
+> Task :app:processDebugResources
+> Task :app:kaptGenerateStubsDebugKotlin
+> Task :app:kaptDebugKotlin FAILED
+> Task :app:mergeExtDexDebug
+
+[Incubating] Problems report is available at: file:///D:/athlentiq/RepDetect-main/build/reports/problems/problems-report.html
+./gradlew : 
+At line:1 char:1
++ ./gradlew clean assembleDebug > build_log_final.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], Remo 
+   teException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:kaptDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.gradl
+e.internal.KaptWithoutKotlincTask$KaptExecutionWorkAction
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 35s
+33 actionable tasks: 33 executed
