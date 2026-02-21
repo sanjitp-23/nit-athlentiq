@@ -139,4 +139,7 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     kapt 'com.github.bumptech.glide:compiler:4.16.0'
+
+    // Google ML Kit Selfie Segmentation
+    implementation 'com.google.mlkit:segmentation-selfie:16.0.0-beta4'
 }

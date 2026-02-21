@@ -1,0 +1,5 @@
+﻿e: file:///C:/Users/sanji/Downloads/version%201/athlentiq/RepDetect-main/app/src/main/java/com/example/poseexercise/data/plan/Constants.kt:30:36 Unresolved reference: squat_img
+e: file:///C:/Users/sanji/Downloads/version%201/athlentiq/RepDetect-main/app/src/main/java/com/example/poseexercise/data/plan/Constants.kt:37:36 Unresolved reference: sit_ups_img
+e: file:///C:/Users/sanji/Downloads/version%201/athlentiq/RepDetect-main/app/src/main/java/com/example/poseexercise/data/plan/Constants.kt:44:36 Unresolved reference: chest_press_img
+e: file:///C:/Users/sanji/Downloads/version%201/athlentiq/RepDetect-main/app/src/main/java/com/example/poseexercise/data/plan/Constants.kt:51:36 Unresolved reference: dead_lift_img
+e: file:///C:/Users/sanji/Downloads/version%201/athlentiq/RepDetect-main/app/src/main/java/com/example/poseexercise/data/plan/Constants.kt:58:36 Unresolved reference: shoulder_press_img

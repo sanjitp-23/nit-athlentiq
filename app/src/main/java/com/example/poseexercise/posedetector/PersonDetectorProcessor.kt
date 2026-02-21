@@ -34,25 +34,40 @@ class PersonDetectorProcessor(context: Context) {
         private const val TAG = "PersonDetectorProcessor"
         private const val MODEL_PATH = "efficientdet_lite0.tflite"
         private const val MAX_RESULTS = 3
-        private const val SCORE_THRESHOLD = 0.5f
+        private const val SCORE_THRESHOLD = 0.35f
         private const val PERSON_CATEGORY = "person"
 
         // EMA smoothing factor for centroid positions (0 = no smoothing, 1 = instant)
         private const val CENTROID_EMA_ALPHA = 0.4f
 
-        // Tracking weights
-        private const val HORIZONTAL_WEIGHT = 0.45f   // X-position is strongest signal
-        private const val VERTICAL_WEIGHT = 0.20f     // Y-position less reliable during exercises
-        private const val IOU_WEIGHT = 0.20f          // IoU helps when shapes overlap
-        private const val SIZE_WEIGHT = 0.15f         // Size similarity prevents size-based swaps
+        // Tracking weights (optimized for occlusion and crossing paths)
+        private const val HORIZONTAL_WEIGHT = 0.35f   // Reduced to allow subjects to cross without instant ID swap
+        private const val VERTICAL_WEIGHT = 0.15f     // Y-position less reliable during exercises
+        private const val IOU_WEIGHT = 0.25f          // Increased to strongly prefer physical overlap 
+        private const val SIZE_WEIGHT = 0.25f         // Increased to strongly prefer consistent subject size
 
         // Thresholds
-        private const val MIN_MATCH_SCORE = 0.25f
+        private const val MIN_MATCH_SCORE = 0.35f
         private const val MAX_HORIZONTAL_DIST_RATIO = 0.35f // Max horizontal dist as fraction of image width
         private const val MAX_VERTICAL_DIST_RATIO = 0.50f   // More lenient vertically for exercises
 
         // How many frames a person can be missing before we remove them
-        private const val MAX_MISSING_FRAMES = 8
+        private const val MAX_MISSING_FRAMES = 45  // ~1.5 seconds at 30fps
+        private const val SELECTED_MAX_MISSING_FRAMES = 300  // ~10 seconds for selected person
+    }
+
+    // The currently selected person's tracking ID (protected from expiry)
+    private var selectedTrackingId: Int = -1
+
+    /**
+     * Set the selected person's tracking ID so their state is preserved longer.
+     */
+    fun setSelectedId(id: Int) {
+        selectedTrackingId = id
+        // Mark the selected state in tracked states
+        trackedStates.values.forEach { state ->
+            state.isSelected = (state.trackingId == id)
+        }
     }
 
     /**
@@ -268,7 +283,13 @@ class PersonDetectorProcessor(context: Context) {
         for ((stateId, state) in trackedStates) {
             if (stateId !in matchedStateIds && stateId !in result.map { it.trackingId }) {
                 state.missingFrames++
-                if (state.missingFrames > MAX_MISSING_FRAMES) {
+                // Selected person gets much longer grace period
+                val maxMissing = if (state.trackingId == selectedTrackingId) {
+                    SELECTED_MAX_MISSING_FRAMES
+                } else {
+                    MAX_MISSING_FRAMES
+                }
+                if (state.missingFrames > maxMissing) {
                     staleIds.add(stateId)
                 }
             }

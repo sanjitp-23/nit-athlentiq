@@ -27,35 +27,35 @@ object Constants {
             Exercise(
                 id = 3,
                 name = "Squat",
-                image = R.drawable.squat_img,
+                image = R.drawable.squat,
                 calorie = 3.8,
                 level = "Beginner"
             ),
             Exercise(
                 id = 4,
                 name = "Sit up",
-                image = R.drawable.sit_ups_img,
+                image = R.drawable.sit_ups,
                 calorie = 5.0,
                 level = "Advance"
             ),
             Exercise(
                 id = 5,
                 name = "Chest press",
-                image = R.drawable.chest_press_img,
+                image = R.drawable.chest_press,
                 calorie = 7.0,
                 level = "Advance"
             ),
             Exercise(
                 id = 6,
                 name = "Dead lift",
-                image = R.drawable.dead_lift_img,
+                image = R.drawable.dead_lift,
                 calorie = 10.0,
                 level = "Advance"
             ),
             Exercise(
                 id = 7,
                 name = "Shoulder press",
-                image = R.drawable.shoulder_press_img,
+                image = R.drawable.shoulder_press,
                 calorie = 9.0,
                 level = "Advance"
             ),

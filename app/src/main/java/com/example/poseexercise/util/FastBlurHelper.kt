@@ -32,14 +32,13 @@ object FastBlurHelper {
         val origW = original.width
         val origH = original.height
 
-        // Step 1: Downscale to 1/4 size — keeps enough resolution for smooth blur
+        // Step 1: Downscale to 1/4 size — keeps enough resolution for a clean, light blur
         val smallW = max(4, origW / 4)
         val smallH = max(4, origH / 4)
         val small = Bitmap.createScaledBitmap(original, smallW, smallH, true)
 
-        // Step 2: Apply 3 passes of box blur (each pass smooths further)
-        // 3 passes of box blur closely approximates Gaussian blur
-        val blurred = boxBlur(small, radius = 3, passes = 3)
+        // Step 2: Apply 3 passes of box blur with a small radius for a professional, shallow depth-of-field look
+        val blurred = boxBlur(small, radius = 2, passes = 3)
         if (small !== blurred) small.recycle()
 
         // Step 3: Upscale back to original size with bilinear filtering

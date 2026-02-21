@@ -57,6 +57,12 @@ public final class CameraXViewModel extends AndroidViewModel {
         return detectedPersonsLiveData;
     }
 
+    private final MutableLiveData<Boolean> showSkeletonLiveData = new MutableLiveData<>(true);
+
+    public MutableLiveData<Boolean> getShowSkeletonLiveData() {
+        return showSkeletonLiveData;
+    }
+
     private final MutableLiveData<Integer> selectedPersonId = new MutableLiveData<>(-1);
 
     public MutableLiveData<Integer> getSelectedPersonId() {

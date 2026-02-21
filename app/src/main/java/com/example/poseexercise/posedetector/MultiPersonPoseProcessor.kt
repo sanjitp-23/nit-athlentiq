@@ -22,6 +22,11 @@ import com.google.mlkit.vision.pose.Pose
 import com.google.mlkit.vision.pose.PoseDetection
 import com.google.mlkit.vision.pose.PoseDetector
 import com.google.mlkit.vision.pose.PoseDetectorOptionsBase
+import com.google.mlkit.vision.segmentation.Segmentation
+import com.google.mlkit.vision.segmentation.SegmentationMask
+import com.google.mlkit.vision.segmentation.Segmenter
+import com.google.mlkit.vision.segmentation.selfie.SelfieSegmenterOptions
+import java.nio.ByteBuffer
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import kotlin.math.max
@@ -49,6 +54,10 @@ class MultiPersonPoseProcessor(
 ) : VisionProcessorBase<MultiPersonPoseProcessor.MultiPersonResult>(context) {
 
     private val poseDetector: PoseDetector = PoseDetection.getClient(options)
+    private val segmenterOptions = SelfieSegmenterOptions.Builder()
+        .setDetectorMode(if (isStreamMode) SelfieSegmenterOptions.STREAM_MODE else SelfieSegmenterOptions.SINGLE_IMAGE_MODE)
+        .build()
+    private val segmenter: Segmenter = Segmentation.getClient(segmenterOptions)
     private val personDetector: PersonDetectorProcessor = PersonDetectorProcessor(context)
     private val classificationExecutor: Executor = Executors.newSingleThreadExecutor()
 
@@ -61,6 +70,9 @@ class MultiPersonPoseProcessor(
         private const val CROP_PADDING_RATIO = 0.15f
     }
 
+    // Last-known bounding box for the selected person (used for persistent blur)
+    private var lastSelectedBox: android.graphics.Rect? = null
+
     /**
      * Holds the combined results: detected persons + pose for the selected person.
      */
@@ -68,7 +80,8 @@ class MultiPersonPoseProcessor(
         val persons: List<TrackedPerson>,
         val selectedPose: Pose?,
         val selectedPersonBox: Rect?,
-        classificationResult: Map<String, PostureResult>
+        classificationResult: Map<String, PostureResult>,
+        val selectedMaskBitmap: Bitmap?
     ) {
         init {
             // Publish classification results to ViewModel
@@ -87,6 +100,7 @@ class MultiPersonPoseProcessor(
     override fun stop() {
         super.stop()
         poseDetector.close()
+        segmenter.close()
         personDetector.close()
         cameraXViewModel = null
     }
@@ -94,7 +108,7 @@ class MultiPersonPoseProcessor(
     override fun detectInImage(image: InputImage): Task<MultiPersonResult> {
         // Get the latest camera bitmap for person detection
         val bitmap = latestBitmap ?: return Tasks.forResult(
-            MultiPersonResult(emptyList(), null, null, emptyMap())
+            MultiPersonResult(emptyList(), null, null, emptyMap(), null)
         )
 
         return detectPersonsAndPose(bitmap, image)
@@ -102,7 +116,7 @@ class MultiPersonPoseProcessor(
 
     override fun detectInImage(image: MlImage): Task<MultiPersonResult> {
         val bitmap = latestBitmap ?: return Tasks.forResult(
-            MultiPersonResult(emptyList(), null, null, emptyMap())
+            MultiPersonResult(emptyList(), null, null, emptyMap(), null)
         )
 
         // Convert MlImage to InputImage is handled by the base; we use the bitmap path
@@ -131,6 +145,10 @@ class MultiPersonPoseProcessor(
 
         // Mark the selected person
         val selectedId = cameraXViewModel?.selectedPersonId?.value ?: -1
+
+        // Tell the person detector which ID is selected so it's protected from expiry
+        personDetector.setSelectedId(selectedId)
+
         val annotatedPersons = persons.map { p ->
             if (p.trackingId == selectedId) p.copy(isSelected = true) else p
         }
@@ -146,10 +164,16 @@ class MultiPersonPoseProcessor(
         // Step 2: Run pose detection on selected person only
         val selectedPerson = annotatedPersons.find { it.trackingId == selectedId }
 
+        // Update or use last-known bounding box for persistent blur
+        if (selectedPerson != null) {
+            lastSelectedBox = selectedPerson.boundingBox
+        }
+        // If selected person is missing, lastSelectedBox retains the previous value
+
         if (selectedPerson == null || !runClassification) {
             // No selected person or classification not triggered yet
             return Tasks.forResult(
-                MultiPersonResult(annotatedPersons, null, null, emptyMap())
+                MultiPersonResult(annotatedPersons, null, null, emptyMap(), null)
             )
         }
 
@@ -164,15 +188,20 @@ class MultiPersonPoseProcessor(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to crop bitmap for pose detection", e)
             return Tasks.forResult(
-                MultiPersonResult(annotatedPersons, null, null, emptyMap())
+                MultiPersonResult(annotatedPersons, null, null, emptyMap(), null)
             )
         }
 
-        // Run pose detection on the cropped image
+        // Run pose detection and segmentation concurrently on the cropped image
         val croppedInput = InputImage.fromBitmap(croppedBitmap, 0)
-        return poseDetector.process(croppedInput)
+        val poseTask = poseDetector.process(croppedInput)
+        val segmentTask = segmenter.process(croppedInput)
+
+        return Tasks.whenAllComplete(poseTask, segmentTask)
             .continueWith(classificationExecutor) { task ->
-                val pose = task.result
+                val pose = if (poseTask.isSuccessful) poseTask.result else null
+                val mask = if (segmentTask.isSuccessful) segmentTask.result else null
+                val maskBitmap = mask?.let { createMaskBitmap(it) }
 
                 var classificationResult: Map<String, PostureResult> = HashMap()
                 if (runClassification && pose != null && pose.allPoseLandmarks.isNotEmpty()) {
@@ -191,7 +220,7 @@ class MultiPersonPoseProcessor(
                     croppedBitmap.recycle()
                 }
 
-                MultiPersonResult(annotatedPersons, pose, cropRect, classificationResult)
+                MultiPersonResult(annotatedPersons, pose, cropRect, classificationResult, maskBitmap)
             }
     }
 
@@ -203,12 +232,21 @@ class MultiPersonPoseProcessor(
 
         // Portrait-mode blur: blur everything except the selected person
         if (selectedId >= 0) {
+            // Use current bounding box if person is visible, otherwise use last-known position
             val selectedPerson = results.persons.find { it.trackingId == selectedId }
-            if (selectedPerson != null) {
+            val blurBox = selectedPerson?.boundingBox ?: lastSelectedBox
+
+            if (blurBox != null) {
                 val cameraBitmap = latestBitmap
                 if (cameraBitmap != null && !cameraBitmap.isRecycled) {
                     graphicOverlay.add(
-                        BlurOverlayGraphic(graphicOverlay, selectedPerson.boundingBox, cameraBitmap)
+                        BlurOverlayGraphic(
+                            graphicOverlay,
+                            blurBox,
+                            cameraBitmap,
+                            results.selectedMaskBitmap,
+                            results.selectedPersonBox
+                        )
                     )
                 }
             }
@@ -228,10 +266,12 @@ class MultiPersonPoseProcessor(
             )
         }
 
-        // Draw pose skeleton for the selected person (if available)
+        // Draw pose skeleton for the selected person (if available and enabled)
         val pose = results.selectedPose
         val cropRect = results.selectedPersonBox
-        if (pose != null && cropRect != null) {
+        val showSkeleton = cameraXViewModel?.showSkeletonLiveData?.value != false
+        
+        if (pose != null && cropRect != null && showSkeleton) {
             graphicOverlay.add(
                 PoseGraphic(
                     graphicOverlay,
@@ -267,5 +307,22 @@ class MultiPersonPoseProcessor(
             min(imageWidth, box.right + padX),
             min(imageHeight, box.bottom + padY)
         )
+    }
+
+    /**
+     * Converts a SegmentationMLMask into a Bitmap for fast drawing on canvas.
+     */
+    private fun createMaskBitmap(mask: SegmentationMask): Bitmap {
+        val width = mask.width
+        val height = mask.height
+        val buffer = mask.buffer
+        buffer.rewind()
+        val pixels = IntArray(width * height)
+        for (i in 0 until width * height) {
+            val confidence = buffer.float
+            val alpha = (confidence * 255).toInt().coerceIn(0, 255)
+            pixels[i] = android.graphics.Color.argb(alpha, 0, 0, 0)
+        }
+        return Bitmap.createBitmap(pixels, 0, width, width, height, Bitmap.Config.ARGB_8888)
     }
 }

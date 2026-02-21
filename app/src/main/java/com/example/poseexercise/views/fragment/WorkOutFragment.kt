@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -139,6 +140,7 @@ class WorkOutFragment : Fragment(), MemoryManagement {
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var yogaPoseImage: ImageView
     private lateinit var selectedPersonText: TextView
+    private lateinit var skeletonToggleFAB: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -181,6 +183,7 @@ class WorkOutFragment : Fragment(), MemoryManagement {
         workoutRecyclerView = view.findViewById(R.id.workoutRecycleViewArea)
         workoutRecyclerView.layoutManager = LinearLayoutManager(activity)
         yogaPoseImage = view.findViewById(R.id.yogaPoseSnapShot)
+        skeletonToggleFAB = view.findViewById(R.id.skeleton_toggle)
         return view
     }
 
@@ -192,6 +195,7 @@ class WorkOutFragment : Fragment(), MemoryManagement {
         graphicOverlay = view.findViewById(R.id.graphic_overlay)
         selectedPersonText = view.findViewById(R.id.selectedPersonText)
         cameraFlipFAB.visibility = View.VISIBLE
+        skeletonToggleFAB.visibility = View.VISIBLE
         startButton.visibility = View.VISIBLE
         gifContainer.visibility = View.GONE
         skipButton.visibility = View.GONE
@@ -220,6 +224,22 @@ class WorkOutFragment : Fragment(), MemoryManagement {
         // --- End multi-person selection setup ---
 
 
+        // --- Skeleton Toggle setup ---
+        skeletonToggleFAB.setOnClickListener {
+            val isVisible = cameraViewModel.showSkeletonLiveData.value ?: true
+            cameraViewModel.showSkeletonLiveData.value = !isVisible
+        }
+
+        cameraViewModel.showSkeletonLiveData.observe(viewLifecycleOwner) { isVisible ->
+            if (isVisible) {
+                skeletonToggleFAB.setImageResource(R.drawable.ic_visibility)
+            } else {
+                skeletonToggleFAB.setImageResource(R.drawable.ic_visibility_off)
+            }
+        }
+        // --- End Skeleton Toggle setup ---
+
+
         // start exercise button
         startButton.setOnClickListener {
             // showing loading AI pose detection Model information to user
@@ -230,6 +250,7 @@ class WorkOutFragment : Fragment(), MemoryManagement {
             // Add the FLAG_KEEP_SCREEN_ON flag to the activity's window, keeping the screen on
             activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             cameraFlipFAB.visibility = View.GONE
+            skeletonToggleFAB.visibility = View.GONE
             gifContainer.visibility = View.VISIBLE
             buttonCancelExercise.visibility = View.VISIBLE
             buttonCompleteExercise.visibility = View.VISIBLE
@@ -386,10 +407,10 @@ class WorkOutFragment : Fragment(), MemoryManagement {
                 // Transition to the "Start" button
                 startButton.visibility = View.GONE
                 cameraFlipFAB.visibility = View.VISIBLE
+                skeletonToggleFAB.visibility = View.VISIBLE
                 viewPager.visibility = View.GONE
                 skipButton.visibility = View.GONE
                 gifContainer.visibility = View.GONE
-                cameraFlipFAB.visibility = View.GONE
             }
             viewPager.adapter = exerciseGifAdapter
 
@@ -749,7 +770,7 @@ class WorkOutFragment : Fragment(), MemoryManagement {
             return
         }
         val builder = ImageAnalysis.Builder()
-            .setTargetResolution(android.util.Size(1280, 720))
+            .setTargetResolution(android.util.Size(480, 360))
         analysisUseCase = builder.build()
         needUpdateGraphicOverlayImageSourceInfo = true
         analysisUseCase?.setAnalyzer(
@@ -1009,6 +1030,14 @@ class WorkOutFragment : Fragment(), MemoryManagement {
         cameraFlipFAB.setOnClickListener(null)
         skipButton.setOnClickListener(null)
         workoutRecyclerView.adapter = null
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        // Recalculate overlay transformation matrix on orientation change
+        needUpdateGraphicOverlayImageSourceInfo = true
+        // Rebind camera use cases to adapt to new orientation
+        notCompletedExercise?.let { bindAllCameraUseCases(it) } ?: bindAllCameraUseCases(emptyList())
     }
 
     override fun onDestroy() {

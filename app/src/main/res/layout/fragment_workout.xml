@@ -182,6 +182,25 @@
             app:rippleColor="@color/white"
             app:srcCompat="@drawable/cameraflip" />
 
+        <!-- Skeleton Toggle Button -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/skeleton_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Toggle Skeleton"
+            app:backgroundTint="@color/primaryColor"
+            app:elevation="15dp"
+            app:fabCustomSize="40dp"
+            app:layout_constraintBottom_toTopOf="@id/facing_switch"
+            app:layout_constraintEnd_toEndOf="@id/facing_switch"
+            app:layout_constraintStart_toStartOf="@id/facing_switch"
+            android:layout_marginBottom="16dp"
+            app:pressedTranslationZ="6dp"
+            app:rippleColor="@color/white"
+            app:srcCompat="@drawable/ic_visibility" />
+
         <!-- Timer Recording Icon -->
         <ImageView
             android:id="@+id/timerRecIcon"

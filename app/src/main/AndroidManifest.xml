@@ -23,6 +23,10 @@
         tools:remove="android:appComponentFactory"
         tools:targetApi="31">
 
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
         <activity
             android:name=".views.activity.OnboardingActivity"
             android:exported="false"
@@ -31,7 +35,7 @@
         <activity
             android:name=".views.activity.MainActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".views.activity.SplashActivity"
             android:exported="true"

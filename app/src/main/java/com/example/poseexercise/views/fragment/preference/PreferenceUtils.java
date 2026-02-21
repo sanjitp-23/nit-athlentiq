@@ -42,36 +42,36 @@ public class PreferenceUtils {
         Preconditions.checkArgument(
                 lensfacing == CameraSelector.LENS_FACING_BACK
                         || lensfacing == CameraSelector.LENS_FACING_FRONT);
-        String prefKey =
-                lensfacing == CameraSelector.LENS_FACING_BACK
-                        ? context.getString(R.string.pref_key_camerax_rear_camera_target_resolution)
-                        : context.getString(R.string.pref_key_camerax_front_camera_target_resolution);
+        String prefKey = lensfacing == CameraSelector.LENS_FACING_BACK
+                ? context.getString(R.string.pref_key_camerax_rear_camera_target_resolution)
+                : context.getString(R.string.pref_key_camerax_front_camera_target_resolution);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         try {
-            return android.util.Size.parseSize(sharedPreferences.getString(prefKey, null));
+            android.util.Size res = android.util.Size.parseSize(sharedPreferences.getString(prefKey, null));
+            if (res != null)
+                return res;
         } catch (Exception e) {
-            return null;
+            // fallthrough
         }
+        return new android.util.Size(480, 360);
     }
 
     public static PoseDetectorOptionsBase getPoseDetectorOptionsForLivePreview(Context context) {
-        int performanceMode =
-                getModeTypePreferenceValue(
-                        context,
-                        R.string.pref_key_live_preview_pose_detection_performance_mode,
-                        POSE_DETECTOR_PERFORMANCE_MODE_FAST);
+        int performanceMode = getModeTypePreferenceValue(
+                context,
+                R.string.pref_key_live_preview_pose_detection_performance_mode,
+                POSE_DETECTOR_PERFORMANCE_MODE_FAST);
         boolean preferGPU = preferGPUForPoseDetection(context);
         if (performanceMode == POSE_DETECTOR_PERFORMANCE_MODE_FAST) {
-            PoseDetectorOptions.Builder builder =
-                    new PoseDetectorOptions.Builder().setDetectorMode(PoseDetectorOptions.STREAM_MODE);
+            PoseDetectorOptions.Builder builder = new PoseDetectorOptions.Builder()
+                    .setDetectorMode(PoseDetectorOptions.STREAM_MODE);
             if (preferGPU) {
                 builder.setPreferredHardwareConfigs(PoseDetectorOptions.CPU_GPU);
             }
             return builder.build();
         } else {
-            AccuratePoseDetectorOptions.Builder builder =
-                    new AccuratePoseDetectorOptions.Builder()
-                            .setDetectorMode(AccuratePoseDetectorOptions.STREAM_MODE);
+            AccuratePoseDetectorOptions.Builder builder = new AccuratePoseDetectorOptions.Builder()
+                    .setDetectorMode(AccuratePoseDetectorOptions.STREAM_MODE);
             if (preferGPU) {
                 builder.setPreferredHardwareConfigs(AccuratePoseDetectorOptions.CPU_GPU);
             }
@@ -87,8 +87,7 @@ public class PreferenceUtils {
 
     public static boolean shouldShowPoseDetectionInFrameLikelihoodLivePreview(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String prefKey =
-                context.getString(R.string.pref_key_live_preview_pose_detector_show_in_frame_likelihood);
+        String prefKey = context.getString(R.string.pref_key_live_preview_pose_detector_show_in_frame_likelihood);
         return sharedPreferences.getBoolean(prefKey, true);
     }
 
@@ -105,8 +104,10 @@ public class PreferenceUtils {
     }
 
     /**
-     * Mode type preference is backed by {@link android.preference.ListPreference} which only support
-     * storing its entry value as string type, so we need to retrieve as string and then convert to
+     * Mode type preference is backed by {@link android.preference.ListPreference}
+     * which only support
+     * storing its entry value as string type, so we need to retrieve as string and
+     * then convert to
      * integer.
      */
     private static int getModeTypePreferenceValue(
