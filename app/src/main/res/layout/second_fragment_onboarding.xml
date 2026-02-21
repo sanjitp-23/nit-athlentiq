@@ -39,8 +39,10 @@
         android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="@string/elevate_your_workout_experience"
+        android:textColor="@color/textPrimary"
         android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/oswald" />
 
     <!-- Sub title -->
     <TextView

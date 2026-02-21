@@ -5,7 +5,10 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingHorizontal="@dimen/padding_medium"
-    android:paddingVertical="@dimen/padding_small">
+    android:paddingVertical="@dimen/padding_small"
+    android:background="@drawable/rounded_rectangle"
+    android:backgroundTint="#242424"
+    android:layout_marginBottom="8dp">
 
     <ImageView
         android:id="@+id/imageView"
@@ -27,8 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/exercise_type"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_label"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/oswald" />
 
         <TextView
             android:id="@+id/textViewReps"
@@ -38,6 +43,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginEnd="@dimen/text_normal"
+            android:textColor="@color/primaryColor"
             android:text="@string/reps"
             android:textSize="@dimen/text_normal" />
     </RelativeLayout>

@@ -52,20 +52,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintVertical_bias="0.12" />
 
-        <!-- Confidence Indicator -->
+        <!-- Confidence Indicator Background -->
         <ImageView
             android:id="@+id/confidenceIndicatorView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:alpha="0.7"
-            android:layout_margin="10dp"
+            android:layout_margin="16dp"
             android:visibility="invisible"
             android:contentDescription="@string/confidence_indicator"
             android:background="@drawable/confidence_indicator"
-            app:layout_constraintDimensionRatio="1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
 
@@ -74,9 +71,10 @@
             android:id="@+id/confidenceIndicatorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="100sp"
+            android:textSize="32sp"
             android:textColor="@color/white"
             android:textStyle="bold"
+            android:fontFamily="@font/oswald"
             app:layout_constraintEnd_toEndOf="@+id/confidenceIndicatorView"
             app:layout_constraintStart_toStartOf="@+id/confidenceIndicatorView"
             app:layout_constraintBottom_toBottomOf="@+id/confidenceIndicatorView"
@@ -202,16 +200,15 @@
             android:id="@+id/timerTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:text="@string/_00_00"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold"
+            android:fontFamily="@font/oswald"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.05" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Current Exercise Text -->
         <TextView

@@ -20,8 +20,10 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:text="@string/create_a_workout"
+        android:textColor="@color/textPrimary"
         android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/oswald" />
 
     <TextView
         android:id="@+id/textView2"

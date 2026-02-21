@@ -40,8 +40,10 @@
         android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="@string/hassle_free_repetition_tracking"
+        android:textColor="@color/textPrimary"
         android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/oswald" />
 
     <!-- Sub title -->
     <TextView

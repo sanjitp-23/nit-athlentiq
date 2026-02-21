@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#3499C7</color>
-    <color name="backgroundFill">#F1F1F1</color>
+    <color name="primaryColor">#E65100</color>
+    <color name="primaryColorDark">#BF360C</color>
+    <color name="primaryColorLight">#FF8A65</color>
+    <color name="backgroundFill">#FFF3E0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#C4C4C4</color>
-    <color name="blueButton">#5362F6</color>
+    <color name="blueButton">#FF6D00</color>
     <color name="textGray">#8C9092</color>
     <color name="red">#FF0909</color>
     <color name="orange">#FD812E</color>
     <color name="yellow">#F9FD2E</color>
     <color name="lightGreen">#95FD2E</color>
     <color name="green">#00B312</color>
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#757575</color>
+    <color name="surfaceColor">#FFFFFF</color>
+    <color name="cardBackground">#FFFFFF</color>
 </resources>

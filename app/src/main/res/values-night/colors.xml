@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#FF6D00</color>
+    <color name="primaryColorDark">#E65100</color>
+    <color name="primaryColorLight">#FFAB40</color>
+    <color name="backgroundFill">#1A1A1A</color>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#FF000000</color>
+    <color name="gray">#424242</color>
+    <color name="blueButton">#FF6D00</color>
+    <color name="textGray">#B0B0B0</color>
+    <color name="textPrimary">#F5F5F5</color>
+    <color name="textSecondary">#B0B0B0</color>
+    <color name="surfaceColor">#212121</color>
+    <color name="cardBackground">#2C2C2C</color>
+</resources>

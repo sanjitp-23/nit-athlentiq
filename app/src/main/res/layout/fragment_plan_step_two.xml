@@ -34,8 +34,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_xxlarge"
                     android:text="@string/new_plan"
+                    android:textColor="@color/textPrimary"
                     android:textSize="@dimen/text_header"
                     android:textStyle="bold"
+                    android:fontFamily="@font/oswald"
                     app:layout_constraintBottom_toTopOf="@id/textField1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,8 +92,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_large"
                     android:text="@string/label_days"
+                    android:textColor="@color/textPrimary"
                     android:textSize="@dimen/text_label"
                     android:textStyle="bold"
+                    android:fontFamily="@font/oswald"
                     app:layout_constraintStart_toStartOf="@id/textField2"
                     app:layout_constraintTop_toBottomOf="@+id/textField2" />
             </androidx.constraintlayout.widget.ConstraintLayout>

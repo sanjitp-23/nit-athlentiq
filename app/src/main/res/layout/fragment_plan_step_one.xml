@@ -30,8 +30,10 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="35dp"
                 android:text="@string/choose_exercise"
+                android:textColor="@color/textPrimary"
                 android:textSize="32sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/oswald" />
 
             <!-- ChipGroup for exercise difficulty levels -->
             <com.google.android.material.chip.ChipGroup
@@ -77,6 +79,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_xxlarge"
                 android:scrollbars="vertical"
+                android:clipToPadding="false"
+                android:layoutAnimation="@anim/layout_animation_slide_in"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

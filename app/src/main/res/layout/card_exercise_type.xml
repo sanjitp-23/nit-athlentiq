@@ -7,6 +7,8 @@
     android:layout_height="@dimen/list_item_height"
     android:layout_marginHorizontal="@dimen/margin_small"
     android:layout_marginBottom="@dimen/margin_larger"
+    android:stateListAnimator="@animator/card_bounce"
+    app:cardBackgroundColor="#242424"
     android:clickable="true">
 
     <RelativeLayout
@@ -37,7 +39,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/oswald" />
 
             <LinearLayout
                 android:layout_width="match_parent"
